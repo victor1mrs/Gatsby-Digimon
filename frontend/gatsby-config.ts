@@ -1,42 +1,73 @@
-import type { GatsbyConfig } from "gatsby";
+"use strict";
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 const path = require(`path`);
-import { CreateWebpackConfigArgs } from 'gatsby';
+import type { GatsbyConfig } from "gatsby";
+import { CreateWebpackConfigArgs } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Gatsby-Ts`,
     siteUrl: `https://www.yourdomain.tld`,
-    contact: 'victor1mrs@hotmail.com'
+    contact: "victor1mrs@hotmail.com",
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
-  plugins: ["gatsby-transformer-remark", "gatsby-plugin-sass", "gatsby-plugin-image", "gatsby-plugin-mdx", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-tslint", {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-     name: `images`,
-     path: `${__dirname}/src/images/`,
+  plugins: [
+    "gatsby-transformer-remark",
+    "gatsby-plugin-sass",
+    "gatsby-plugin-image",
+    "gatsby-plugin-mdx",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-tslint",
+    "gatsby-transformer-json",
+    "gatsby-plugin-emotion",
+    "gatsby-plugin-typescript",
+    "gatsby-plugin-react-helmet",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
+      __key: "images",
     },
-    __key: "images"
-  },
-  {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      "name": "pages",
-      "path": "./src/pages/"
+    {
+      resolve: "gatsby-source-strapi",
+      options: {
+        apiURL: process.env.API_URL || "http://localhost:1337",
+        collectionTypes: [
+          // List of the Content Types you want to be able to request from Gatsby.
+          "article",
+          "category",
+        ],
+        queryLimit: 1000,
+      },
     },
-    __key: "pages"
-  },
-  {
-    resolve: `gatsby-source-filesystem`,
-    options: {
-      // The unique name for each instance
-      name: `characters`,
-      // Path to the directory
-      path: `${__dirname}/src/characters/`,
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "pages",
+        path: "./src/pages/",
+      },
+      __key: "pages",
     },
-  },]
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        // The unique name for each instance
+        name: `characters`,
+        // Path to the directory
+        path: `${__dirname}/src/characters/`,
+      },
+    },
+  ],
 };
 
 export default config;
@@ -95,4 +126,3 @@ exports.onCreateWebpackConfig = ({ actions }: CreateWebpackConfigArgs) => {
     },
   });
 };
-
