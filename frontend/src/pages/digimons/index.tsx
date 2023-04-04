@@ -2,13 +2,14 @@ import { graphql, Link, PageProps } from 'gatsby'
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
 import React from 'react'
 import Layout from '../../components/Layout'
-import { projects, portfolio,htmlStyle } from './digimons.module.scss'
+import { categories, otherDigimons,htmlStyle } from './digimons.module.scss'
 
 
 type DigimonsProps = {
   allStrapiCategory: {
     nodes : [{
       category: string
+      slug: string
       content: {
         data: {
           childMarkdownRemark: {
@@ -29,19 +30,18 @@ type DigimonsProps = {
 
 
 const Digimons = ({ data }: PageProps<DigimonsProps>) => {
-  console.log('DATA ::: ', data)
   const digimonsData = data.allStrapiCategory.nodes
   return (
     <Layout>
-      <div className={portfolio}>
+      <div className={otherDigimons}>
         <h2>Digimons</h2>
         <h3>Separated by Level</h3>
-        <div className={projects}>
+        <div className={categories}>
           {digimonsData.map(level => {
             const image = getImage(level.image.localFile)
             const html = level.content.data.childMarkdownRemark.html
             return (
-              <Link to="/" key={level.category}>
+              <Link to={level.slug} key={level.category}>
                 <div>
                   {image && <GatsbyImage image={image} alt={level.category} />}
                   <h3>{level.category}</h3>
@@ -63,6 +63,7 @@ export const query = graphql`
   allStrapiCategory {
     nodes {
       category
+      slug
       content {
         data {
           childMarkdownRemark {

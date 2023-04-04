@@ -9,6 +9,11 @@ interface QueryData {
       }
     }[]
   }
+  allStrapiCategory: {
+    nodes: {
+      slug: string
+    }[]
+  }
 }
 
 exports.createPages = async ({ graphql, actions } : CreatePagesArgs) => {
@@ -19,6 +24,11 @@ exports.createPages = async ({ graphql, actions } : CreatePagesArgs) => {
           frontmatter {
             slug
           }
+        }
+      }
+      allStrapiCategory {
+        nodes {
+          slug
         }
       }
     }
@@ -33,29 +43,14 @@ exports.createPages = async ({ graphql, actions } : CreatePagesArgs) => {
       })
     })
   }
+
+  if (data?.allStrapiCategory?.nodes) {
+    data.allStrapiCategory.nodes.forEach((node: {slug: string }) => {
+      actions.createPage({
+        path: '/digimons/'+ node.slug,
+        component: path.resolve('./src/templates/digimons-by-level.tsx'),
+        context: { slug: node.slug }
+      })
+    })
+  }
 }
-
-// exports.createResolvers = ({ createResolvers }) => {
-//   const resolvers = {
-//     Query: {
-//       allStrapiPost: {
-//         type: `[Strapi_Post]`,
-//         resolve: async (source, args, context, info) => {
-//           const { allStrapiPost } = await context.nodeModel.runQuery({
-//             query: {
-//               filter: {
-//                 published: {
-//                   eq: true
-//                 }
-//               }
-//             },
-//             type: "Strapi_Post"
-//           });
-//           return allStrapiPost;
-//         }
-//       }
-//     }
-//   };
-
-//   createResolvers(resolvers);
-// };

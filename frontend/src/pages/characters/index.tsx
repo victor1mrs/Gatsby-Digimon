@@ -44,7 +44,7 @@ const Characters = ({ data }: PageProps<CharactersProps>) => {
           {projectsData.map(project => {
             const image = getImage(project.frontmatter.thumb)
             return (
-              <Link to={project.frontmatter.slug} key={project.id}>
+              <Link to={project?.frontmatter?.slug} key={project.id}>
                 <div>
                   {image && <GatsbyImage image={image} alt={project.frontmatter.title} />}
                   <h3>{project.frontmatter.title}</h3>
@@ -63,7 +63,7 @@ export default Characters
 
 export const query = graphql`
   query CharactersPage {
-    characters: allMarkdownRemark {
+    characters: allMarkdownRemark(filter: {frontmatter: {title: {ne: ""}}}){
       nodes {
         id
         frontmatter {

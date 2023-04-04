@@ -31,15 +31,15 @@
         "audios"
       ]
     },
-    "ultimates": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "category"
+    },
+    "slug": {
+      "type": "string",
+      "required": true
     }
   }
 }

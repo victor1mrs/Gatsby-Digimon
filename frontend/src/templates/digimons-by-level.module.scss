@@ -1,0 +1,42 @@
+.header {
+  text-align: center;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  padding: 46px;
+  border-radius: 10px;
+}
+
+// Title styles
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+// Image styles
+.imageStyle {
+  width: 300px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5%;
+  margin-right: 16px;
+}
+
+// Description styles
+.description {
+  padding: 20px;
+}
+
+.description p {
+  color: rgb(242, 226, 226)
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
