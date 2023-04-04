@@ -22,7 +22,7 @@ const Home = ({ data: { file } }: PageProps<HomeProps>) => {
         <div>
           <h1>Digimon?</h1>
           <h3>sure, why not?</h3>
-          <p>Project example to test Gatsby / Ts / Strapi</p>
+          <p>Example project to test Gatsby / Ts / Strapi</p>
         </div>
         {image && <GatsbyImage image={image} alt={file?.name} />}
       </section>
