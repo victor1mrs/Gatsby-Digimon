@@ -29,7 +29,6 @@ const config: GatsbyConfig = {
     "gatsby-transformer-json",
     "gatsby-plugin-emotion",
     "gatsby-plugin-typescript",
-    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -41,13 +40,10 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL: process.env.API_URL || "http://localhost:1337",
-        collectionTypes: [
-          // List of the Content Types you want to be able to request from Gatsby.
-          "article",
-          "category",
-        ],
-        queryLimit: 1000,
+        apiURL: process.env.STRAPI_API_URL || "http://localhost:1337",
+        accessToken: process.env.STRAPI_TOKEN,
+        collectionTypes: ["article", "category"],
+        singleTypes: [],
       },
     },
     {

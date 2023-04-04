@@ -34,3 +34,28 @@ exports.createPages = async ({ graphql, actions } : CreatePagesArgs) => {
     })
   }
 }
+
+// exports.createResolvers = ({ createResolvers }) => {
+//   const resolvers = {
+//     Query: {
+//       allStrapiPost: {
+//         type: `[Strapi_Post]`,
+//         resolve: async (source, args, context, info) => {
+//           const { allStrapiPost } = await context.nodeModel.runQuery({
+//             query: {
+//               filter: {
+//                 published: {
+//                   eq: true
+//                 }
+//               }
+//             },
+//             type: "Strapi_Post"
+//           });
+//           return allStrapiPost;
+//         }
+//       }
+//     }
+//   };
+
+//   createResolvers(resolvers);
+// };

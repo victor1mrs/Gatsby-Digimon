@@ -17,7 +17,8 @@ const Navbar = () => {
       <h1>{title}</h1>
       <div className="links">
         <Link to="/">Home</Link>
-        <Link to="/characters">Digimon Characters</Link>
+        <Link to="/characters">Main Characters</Link>
+        <Link to="/digimons">Other Digimons</Link>
       </div>
     </nav>
   )
