@@ -44,7 +44,7 @@ const DigimonsByLevel = ({ data }: PageProps<DigimonsByLevelProps>) => {
           {digimons.map(digimon => {
             const image = getImage(digimon.image.localFile)
             return (
-              <div className={card}>
+              <div className={card} key={digimon.content.data.childMarkdownRemark.id}>
                 <div className={profile}>
                   <h2 className={title}>{digimon.title}</h2>
                   {image && <GatsbyImage className={imageStyle} image={image} alt={digimon.title} />}
