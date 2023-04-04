@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
 import { graphql, PageProps } from 'gatsby'
-import { card, title, imageStyle, profile, header, description } from './digimons-by-level.module.scss'
+import { card, title, imageStyle, profile, header, description, question } from './digimons-by-level.module.scss'
 
 type DigimonsByLevelProps = {
   allStrapiArticle: {
@@ -49,6 +49,7 @@ const DigimonsByLevel = ({ data }: PageProps<DigimonsByLevelProps>) => {
                   <h2 className={title}>{digimon.title}</h2>
                   {image && <GatsbyImage className={imageStyle} image={image} alt={digimon.title} />}
                 </div>
+                {console.log('HTML :: ', digimon.content.data.childMarkdownRemark.html )}
                 <div className={description} dangerouslySetInnerHTML={{__html: digimon.content.data.childMarkdownRemark.html}} />
               </div>
             )
