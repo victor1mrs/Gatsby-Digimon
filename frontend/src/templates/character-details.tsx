@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
 import { graphql } from 'gatsby'
-import { details, featured, htmlStyle } from './character-details.module.scss'
+import * as styles from './character-details.module.scss'
 
 type CharacterDetailsProps = {
   data: {
@@ -26,13 +26,13 @@ const CharacterDetails = (data: CharacterDetailsProps) => {
   const image = getImage(featuredImg)
   return (
     <Layout>
-      <div className={details}>
+      <div className={styles.details}>
         <h2>{title}</h2>
         <h3>This is a random sub-title</h3>
-        <div className={featured}>
+        <div className={styles.featured}>
           {image && <GatsbyImage image={image} alt={title} />}
         </div>
-        <div className={htmlStyle} dangerouslySetInnerHTML={{__html: html}} />
+        <div className={styles.htmlStyle} dangerouslySetInnerHTML={{__html: html}} />
       </div>
     </Layout>
   )

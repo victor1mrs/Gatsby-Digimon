@@ -40,7 +40,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL: process.env.STRAPI_API_URL || "http://localhost:1337",
+        apiURL: process.env.STRAPI_API_URL || "http://localhost:1338",
         accessToken: process.env.STRAPI_TOKEN,
         collectionTypes: ["article", "category"],
         singleTypes: [],

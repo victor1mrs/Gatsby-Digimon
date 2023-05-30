@@ -2,7 +2,7 @@ import * as React from "react"
 import Layout from '../components/Layout';
 import { graphql, PageProps } from "gatsby"
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
-import { header }  from './home.module.scss'
+import * as styles  from './home.module.scss'
 
 type HomeProps = {
   file: {
@@ -18,7 +18,7 @@ const Home = ({ data: { file } }: PageProps<HomeProps>) => {
   const image = getImage(file)
   return (
     <Layout>
-      <section className={header} >
+      <section className={styles.header} >
         <div>
           <h1>Digimon?</h1>
           <h3>sure, why not?</h3>

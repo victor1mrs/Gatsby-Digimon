@@ -2,7 +2,8 @@ import React from 'react'
 import Layout from '../components/Layout'
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image"
 import { graphql, PageProps } from 'gatsby'
-import { card, title, imageStyle, profile, header, description, question } from './digimons-by-level.module.scss'
+// import { card, title, imageStyle, profile, header, description } from "./digimons-by-level.module.scss"
+import * as styles from './digimons-by-level.module.scss'
 
 type DigimonsByLevelProps = {
   allStrapiArticle: {
@@ -33,10 +34,11 @@ type DigimonsByLevelProps = {
 const DigimonsByLevel = ({ data }: PageProps<DigimonsByLevelProps>) => {
   const type = data.allStrapiArticle.nodes[0].category.category
   const digimons = data.allStrapiArticle.nodes
+  console.log(styles)
   return (
     <Layout>
       <div>
-        <div className={header}>
+        <div className={styles.header}>
           <h2>Digimons of type: {type}</h2>
           <h4>Some examples bellow</h4>
         </div>
@@ -44,13 +46,12 @@ const DigimonsByLevel = ({ data }: PageProps<DigimonsByLevelProps>) => {
           {digimons.map(digimon => {
             const image = getImage(digimon.image.localFile)
             return (
-              <div className={card} key={digimon.content.data.childMarkdownRemark.id}>
-                <div className={profile}>
-                  <h2 className={title}>{digimon.title}</h2>
-                  {image && <GatsbyImage className={imageStyle} image={image} alt={digimon.title} />}
+              <div className={styles.card} key={digimon.content.data.childMarkdownRemark.id}>
+                <div className={styles.profile}>
+                  <h2 className={styles.title}>{digimon.title}</h2>
+                  {image && <GatsbyImage className={styles.imageStyle} image={image} alt={digimon.title} />}
                 </div>
-                {console.log('HTML :: ', digimon.content.data.childMarkdownRemark.html )}
-                <div className={description} dangerouslySetInnerHTML={{__html: digimon.content.data.childMarkdownRemark.html}} />
+                <div className={styles.description} dangerouslySetInnerHTML={{__html: digimon.content.data.childMarkdownRemark.html}} />
               </div>
             )
           })}
